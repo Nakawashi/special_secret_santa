@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎁 Secret Santa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎅 Secret Santa</h1>
+    <p class="tagline">Add everyone, set who <em>can't</em> gift whom, then draw the names.</p>
+  </header>
+
+  <main>
+    <!-- People -->
+    <section class="card">
+      <h2>1. People</h2>
+      <form id="person-form" class="row">
+        <input
+          id="person-input"
+          type="text"
+          placeholder="Add a name, or a list: Alice, Bob, Carol"
+          autocomplete="off"
+        />
+        <button type="submit">Add</button>
+      </form>
+      <ul id="people-list" class="chips"></ul>
+      <p id="people-hint" class="hint">You need at least 2 people.</p>
+    </section>
+
+    <!-- Exclusions -->
+    <section class="card">
+      <h2>2. Exclusions <span class="subtle">(optional)</span></h2>
+      <p class="hint">Pick a person, then check everyone they must NOT gift.</p>
+      <div class="row">
+        <select id="excl-person"></select>
+      </div>
+      <ul id="excl-checklist" class="checklist"></ul>
+      <p id="excl-empty" class="hint">Add at least 2 people first.</p>
+    </section>
+
+    <!-- Draw -->
+    <section class="card">
+      <h2>3. Draw</h2>
+      <button id="draw-btn" class="primary">🎲 Draw names</button>
+      <p id="draw-error" class="error" hidden></p>
+      <div id="results" class="results" hidden>
+        <div class="results-head">
+          <h3>Results</h3>
+          <div class="results-actions">
+            <button id="copy-btn" class="ghost">📋 Copy</button>
+            <button id="reveal-btn" class="ghost">Reveal all</button>
+          </div>
+        </div>
+        <ul id="results-list" class="assignments"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="hint">Everything stays in your browser — nothing is sent anywhere.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

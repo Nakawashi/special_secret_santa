@@ -3,18 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎁 Secret Santa</title>
+  <title>Secret Santa for problematic families</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Short+Stack&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://chr15m.github.io/DoodleCSS/doodle.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="doodle">
   <header>
-    <h1>🎅 Secret Santa</h1>
+    <h1><span class="material-icons">redeem</span> Secret Santa for problematic families</h1>
     <p class="tagline">Add everyone, set who <em>can't</em> gift whom, then draw the names.</p>
   </header>
 
   <main>
     <!-- People -->
-    <section class="card">
+    <section class="card doodle-border">
       <h2>1. People</h2>
       <form id="person-form" class="row">
         <input
@@ -30,7 +35,7 @@
     </section>
 
     <!-- Exclusions -->
-    <section class="card">
+    <section class="card doodle-border">
       <h2>2. Exclusions <span class="subtle">(optional)</span></h2>
       <p class="hint">Pick a person, then check everyone they must NOT gift.</p>
       <div class="row">
@@ -41,15 +46,15 @@
     </section>
 
     <!-- Draw -->
-    <section class="card">
+    <section class="card doodle-border">
       <h2>3. Draw</h2>
-      <button id="draw-btn" class="primary">🎲 Draw names</button>
+      <button id="draw-btn" class="primary"><span class="material-icons">casino</span> Draw names</button>
       <p id="draw-error" class="error" hidden></p>
       <div id="results" class="results" hidden>
         <div class="results-head">
           <h3>Results</h3>
           <div class="results-actions">
-            <button id="copy-btn" class="ghost">📋 Copy</button>
+            <button id="copy-btn" class="ghost"><span class="material-icons">content_copy</span> Copy</button>
             <button id="reveal-btn" class="ghost">Reveal all</button>
           </div>
         </div>

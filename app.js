@@ -262,7 +262,9 @@ function toggleReveal(el) {
     el.classList.add("hidden-name");
     el.dataset.revealed = "false";
   } else {
-    el.textContent = "🎁 " + el.dataset.name;
+    el.innerHTML =
+      '<span class="material-icons">card_giftcard</span> ' +
+      escapeHtml(el.dataset.name);
     el.classList.remove("hidden-name");
     el.dataset.revealed = "true";
   }
@@ -305,10 +307,10 @@ copyBtn.addEventListener("click", async () => {
     }
     document.body.removeChild(ta);
   }
-  const original = copyBtn.textContent;
-  copyBtn.textContent = "✓ Copied";
+  const original = copyBtn.innerHTML;
+  copyBtn.innerHTML = '<span class="material-icons">check</span> Copied';
   setTimeout(() => {
-    copyBtn.textContent = original;
+    copyBtn.innerHTML = original;
   }, 1500);
 });
 

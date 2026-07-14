@@ -29,9 +29,37 @@ jobs:
           mkdir _site
           cp index.html style.css LICENSE _site/
           cp -r js _site/
+          # Cache-busting : ajoute ?v=<commit> derrière chaque js/css dans
+          # index.html pour forcer les navigateurs à recharger après un déploiement.
+          perl -i -pe 's{(src="js/[^"]+\.js)"}{$1?v=$ENV{GITHUB_SHA}"}g; s{(href="style\.css)"}{$1?v=$ENV{GITHUB_SHA}"}g' _site/index.html
+          echo "Références versionnées dans index.html :"
+          grep -E "js/|style\.css" _site/index.html
 
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
+
+      # DIAGNOSTIC TEMPORAIRE : montre où l'on atterrit et l'arborescence
+      # distante, pour identifier le vrai dossier racine du site.
+      # À retirer une fois le bon FTP_SERVER_DIR trouvé.
+      - name: Diagnose remote tree
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ secrets.FTP_PORT || '21' }}
+        run: |
+          lftp -c "
+          set ftp:ssl-allow no;
+          set ftp:passive-mode on;
+          set net:max-retries 2;
+          open -u '$FTP_USERNAME','$FTP_PASSWORD' -p $FTP_PORT ftp://$FTP_SERVER;
+          echo '=== dossier de connexion (pwd) ===';
+          pwd;
+          echo '=== contenu de la racine ===';
+          cls -l;
+          echo '=== arborescence (profondeur 3) ===';
+          find --max-depth=3;
+          "
 
       - name: Deploy via FTP
         env:

@@ -78,6 +78,9 @@ h1 {
 }
 .tagline { color: var(--muted); margin: 0.5rem 0 0; }
 
+/* Section headings use DoodleCSS's hand-drawn font, not the serif fallback. */
+h2, h3 { font-family: "Short Stack", var(--sans); }
+
 main {
   max-width: 680px;
   margin: 0 auto;

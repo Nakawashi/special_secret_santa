@@ -14,6 +14,9 @@ const exclSummary = $("excl-summary");
 const exclSummaryList = $("excl-summary-list");
 
 const MAX_NAME_LEN = 35; // a participant name may not exceed this length
+// A name may contain letters (any language), spaces, hyphens and apostrophes
+// (straight or curly) — but no digits or other symbols.
+const NAME_RE = /^[\p{L}\p{M} '’\-]+$/u;
 
 personForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -26,10 +29,15 @@ personForm.addEventListener("submit", (e) => {
 
   let added = 0;
   let tooLong = 0;
+  let invalid = 0;
   for (const name of names) {
     if (name.length > MAX_NAME_LEN) {
       tooLong++;
       continue; // skip names that are too long
+    }
+    if (!NAME_RE.test(name)) {
+      invalid++;
+      continue; // skip names with digits or other disallowed characters
     }
     const exists = state.people.some(
       (p) => p.toLowerCase() === name.toLowerCase()
@@ -50,7 +58,8 @@ personForm.addEventListener("submit", (e) => {
   renderExclusions();
 
   // renderPeople resets the hint, so show the warning after it.
-  if (tooLong > 0) peopleHint.textContent = t("name_too_long", { max: MAX_NAME_LEN });
+  if (invalid > 0) peopleHint.textContent = t("name_invalid");
+  else if (tooLong > 0) peopleHint.textContent = t("name_too_long", { max: MAX_NAME_LEN });
 });
 
 function removePerson(name) {

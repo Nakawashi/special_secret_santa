@@ -19,6 +19,7 @@ const translations = {
     people_need2: "You need at least 2 people.",
     people_count: "{n} people added.",
     name_too_long: "Names must be {max} characters or fewer.",
+    name_invalid: "Names can't contain digits or symbols — only letters, spaces, hyphens and apostrophes.",
     remove_title: "Remove {name}",
     step2_h2: '2. Who can\'t gift whom? <span class="subtle">(optional)</span>',
     excl_hint:
@@ -66,6 +67,7 @@ const translations = {
     people_need2: "Il faut au moins 2 personnes.",
     people_count: "{n} personnes ajoutées.",
     name_too_long: "Les prénoms doivent faire au maximum {max} caractères.",
+    name_invalid: "Les noms ne peuvent pas contenir de chiffres ou de symboles — uniquement des lettres, espaces, traits d'union et apostrophes.",
     remove_title: "Retirer {name}",
     step2_h2: '2. Qui ne peut pas offrir à qui ? <span class="subtle">(optionnel)</span>',
     excl_hint:
@@ -113,6 +115,7 @@ const translations = {
     people_need2: "Du brauchst mindestens 2 Personen.",
     people_count: "{n} Personen hinzugefügt.",
     name_too_long: "Namen dürfen höchstens {max} Zeichen lang sein.",
+    name_invalid: "Namen dürfen keine Ziffern oder Symbole enthalten — nur Buchstaben, Leerzeichen, Bindestriche und Apostrophe.",
     remove_title: "{name} entfernen",
     step2_h2: '2. Wer darf wem nicht schenken? <span class="subtle">(optional)</span>',
     excl_hint:
@@ -160,6 +163,7 @@ const translations = {
     people_need2: "Ti dovras almain 2 persunas.",
     people_count: "{n} persunas agiuntadas.",
     name_too_long: "Ils nums dastgan avair maximalmain {max} caracters.",
+    name_invalid: "Ils nums na dastgan betg cuntegnair cifras u simbols — mo bustabs, spazis, stritgs e apostrofs.",
     remove_title: "Allontanar {name}",
     step2_h2: '2. Tgi na dastga betg far in regal a tgi? <span class="subtle">(opziunal)</span>',
     excl_hint:
@@ -207,6 +211,7 @@ const translations = {
     people_need2: "Servono almeno 2 persone.",
     people_count: "{n} persone aggiunte.",
     name_too_long: "I nomi non possono superare i {max} caratteri.",
+    name_invalid: "I nomi non possono contenere cifre o simboli — solo lettere, spazi, trattini e apostrofi.",
     remove_title: "Rimuovi {name}",
     step2_h2: '2. Chi non può fare un regalo a chi? <span class="subtle">(facoltativo)</span>',
     excl_hint:

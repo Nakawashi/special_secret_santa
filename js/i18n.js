@@ -5,7 +5,7 @@
 
 const translations = {
   en: {
-    title: "Secret Santa for problematic families",
+    title: "Secret Santa with Exclusions — Draw names for problematic families",
     h1: "Secret Santa for problematic families",
     tagline: "Add everyone, set who <em>can't</em> gift whom, then draw the names.",
     reveal_h2: "Your Secret Santa",
@@ -47,7 +47,7 @@ const translations = {
     credits: "Made with fun by Nakawashi and Claude",
   },
   fr: {
-    title: "Secret Santa pour familles compliquées",
+    title: "Secret Santa avec exclusions — Tirage au sort pour familles compliquées",
     h1: "Secret Santa pour familles compliquées",
     tagline: "Ajoute tout le monde, indique qui ne <em>peut pas</em> offrir à qui, puis tire au sort.",
     reveal_h2: "Ton Secret Santa",
@@ -89,7 +89,7 @@ const translations = {
     credits: "Fait pour le fun par Nakawashi et Claude",
   },
   de: {
-    title: "Secret Santa für schwierige Familien",
+    title: "Secret Santa mit Ausschlüssen — Wichteln für schwierige Familien",
     h1: "Secret Santa für schwierige Familien",
     tagline: "Füge alle hinzu, lege fest, wer wem <em>nicht</em> schenken darf, und lose dann aus.",
     reveal_h2: "Dein Secret Santa",
@@ -131,7 +131,7 @@ const translations = {
     credits: "Mit Freude gemacht von Nakawashi und Claude",
   },
   rm: {
-    title: "Secret Santa per famiglias problematicas",
+    title: "Secret Santa cun exclusiuns — Tratga da nums per famiglias problematicas",
     h1: "Secret Santa per famiglias problematicas",
     tagline: "Agiuntai tuts, definì tgi che <em>na dastga betg</em> far in regal a tgi, e traite lura ils nums.",
     reveal_h2: "Tes Secret Santa",
@@ -173,7 +173,7 @@ const translations = {
     credits: "Fatg cun plaschair da Nakawashi e Claude",
   },
   it: {
-    title: "Secret Santa per famiglie problematiche",
+    title: "Secret Santa con esclusioni — Sorteggio per famiglie problematiche",
     h1: "Secret Santa per famiglie problematiche",
     tagline: "Aggiungi tutti, indica chi <em>non può</em> fare un regalo a chi, poi estrai i nomi.",
     reveal_h2: "Il tuo Secret Santa",

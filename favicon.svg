@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#c0392b"/>
+  <!-- gift box -->
+  <rect x="14" y="28" width="36" height="24" rx="2" fill="#fdf6e3" stroke="#7a1c12" stroke-width="2"/>
+  <rect x="12" y="22" width="40" height="10" rx="2" fill="#fdf6e3" stroke="#7a1c12" stroke-width="2"/>
+  <!-- ribbon -->
+  <rect x="29" y="22" width="6" height="30" fill="#27ae60"/>
+  <!-- bow -->
+  <path d="M32 22 C24 12, 14 16, 20 22 Z" fill="#2ecc71" stroke="#1e7e43" stroke-width="1.5"/>
+  <path d="M32 22 C40 12, 50 16, 44 22 Z" fill="#2ecc71" stroke="#1e7e43" stroke-width="1.5"/>
+  <circle cx="32" cy="22" r="3" fill="#1e7e43"/>
+</svg>

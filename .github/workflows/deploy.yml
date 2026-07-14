@@ -28,6 +28,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html style.css LICENSE _site/
+          cp favicon.svg og-image.svg robots.txt sitemap.xml _site/
           cp -r js _site/
           # Cache-busting : ajoute ?v=<commit> derrière chaque js/css dans
           # index.html pour forcer les navigateurs à recharger après un déploiement.

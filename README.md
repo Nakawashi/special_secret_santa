@@ -10,7 +10,7 @@ per-person exclusions. Everything runs in the browser. No data is sent anywhere.
 - Draw random assignments that honor all exclusions.
 - Share a personal link per person. Each link reveals only that person's match.
 - Copy all links at once for distribution.
-- Interface available in English and French.
+- Interface available in English, French, German, Romansh, and Italian.
 
 ## Usage
 

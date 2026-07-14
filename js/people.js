@@ -10,6 +10,8 @@ const peopleHint = $("people-hint");
 const exclPerson = $("excl-person");
 const exclChecklist = $("excl-checklist");
 const exclEmpty = $("excl-empty");
+const exclSummary = $("excl-summary");
+const exclSummaryList = $("excl-summary-list");
 
 const MAX_NAME_LEN = 35; // a participant name may not exceed this length
 
@@ -114,6 +116,30 @@ function renderExclusions() {
   if (state.selected) exclPerson.value = state.selected;
 
   renderChecklist();
+  renderExclSummary();
+}
+
+// Plain-language recap of every restriction set, so people can verify what
+// they configured across all givers — not just the one currently selected.
+function renderExclSummary() {
+  exclSummaryList.innerHTML = "";
+  const givers = state.people.filter(
+    (g) => (state.exceptions[g] || []).length > 0
+  );
+  exclSummary.hidden = givers.length === 0;
+  for (const giver of givers) {
+    const names = state.exceptions[giver].join(", ");
+    const li = document.createElement("li");
+    const icon = document.createElement("span");
+    icon.className = "material-icons";
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = "block";
+    const text = document.createElement("span");
+    // giver and names are user-supplied but set via textContent, so safe.
+    text.textContent = t("excl_summary_line", { giver, names });
+    li.append(icon, text);
+    exclSummaryList.appendChild(li);
+  }
 }
 
 function renderChecklist() {
@@ -139,6 +165,7 @@ function renderChecklist() {
     cb.addEventListener("change", () => {
       toggleException(person, cb.checked);
       li.classList.toggle("checked", cb.checked);
+      renderExclSummary();
     });
     const span = document.createElement("span");
     span.textContent = person;

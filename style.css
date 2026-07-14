@@ -140,6 +140,40 @@ main {
 }
 .chips .remove:hover { color: var(--red); }
 
+[data-i18n-html="excl_hint"] { margin-bottom: 20px; }
+
+/* Exclusion sentence: the dropdown reads inline as "🚫 [Alice] should NOT
+   give a gift to:" so the giver → receiver direction is obvious. */
+.excl-sentence { align-items: baseline; }
+.excl-sentence .excl-icon { color: var(--red); align-self: center; }
+.excl-sentence select { flex: 0 1 auto; min-width: 8rem; }
+.excl-sentence .excl-tail {
+  font-family: "Nunito", var(--sans);
+  font-weight: 700;
+}
+
+/* Plain-language recap of every restriction set so far. */
+#excl-summary { margin-top: 1.1rem; }
+.excl-summary-title { margin: 0 0 0.45rem; }
+.excl-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.excl-summary-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "Nunito", var(--sans);
+  font-size: 0.92rem;
+}
+.excl-summary-list .material-icons {
+  color: var(--red);
+  font-size: 1.05em;
+}
+
 /* Exclusion checklist */
 .checklist {
   list-style: none;

@@ -124,13 +124,19 @@
 
     <!-- Exclusions -->
     <section class="card doodle-border step">
-      <h2 data-i18n-html="step2_h2">2. Exclusions <span class="subtle">(optional)</span></h2>
-      <p class="hint" data-i18n="excl_hint">Pick a person, then check everyone they must NOT gift.</p>
-      <div class="row">
-        <select id="excl-person"></select>
+      <h2 data-i18n-html="step2_h2">2. Who can't gift whom? <span class="subtle">(optional)</span></h2>
+      <p class="hint" data-i18n-html="excl_hint">By default, <strong>anyone can be matched with anyone</strong>. Only use this if some people <em>shouldn't</em> give to each other — like a couple, or two people who already exchange gifts.</p>
+      <div class="row excl-sentence">
+        <span class="excl-icon material-icons" aria-hidden="true">block</span>
+        <select id="excl-person" data-i18n-aria-label="excl_person_aria" aria-label="Person with a restriction"></select>
+        <span class="excl-tail" data-i18n="excl_sentence_tail">should NOT give a gift to:</span>
       </div>
       <ul id="excl-checklist" class="checklist"></ul>
       <p id="excl-empty" class="hint">Add at least 2 people first.</p>
+      <div id="excl-summary" hidden>
+        <p class="hint excl-summary-title" data-i18n="excl_summary_title">Restrictions set so far:</p>
+        <ul id="excl-summary-list" class="excl-summary-list"></ul>
+      </div>
     </section>
 
     <!-- Draw -->

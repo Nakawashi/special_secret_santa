@@ -20,8 +20,13 @@ const translations = {
     people_count: "{n} people added.",
     name_too_long: "Names must be {max} characters or fewer.",
     remove_title: "Remove {name}",
-    step2_h2: '2. Exclusions <span class="subtle">(optional)</span>',
-    excl_hint: "Pick a person, then check everyone they must NOT gift.",
+    step2_h2: '2. Who can\'t gift whom? <span class="subtle">(optional)</span>',
+    excl_hint:
+      "By default, <strong>anyone can be matched with anyone</strong>. Only use this if some people <em>shouldn't</em> give to each other — like a couple, or two people who already exchange gifts.",
+    excl_person_aria: "Person with a restriction",
+    excl_sentence_tail: "should NOT give a gift to:",
+    excl_summary_title: "Restrictions set so far:",
+    excl_summary_line: "{giver} won't gift {names}",
     add_first: "Add at least 2 people first.",
     step3_h2: "3. Draw",
     draw_btn: "Draw names",
@@ -62,8 +67,13 @@ const translations = {
     people_count: "{n} personnes ajoutées.",
     name_too_long: "Les prénoms doivent faire au maximum {max} caractères.",
     remove_title: "Retirer {name}",
-    step2_h2: '2. Exclusions <span class="subtle">(optionnel)</span>',
-    excl_hint: "Choisis une personne, puis coche tous ceux à qui elle ne doit PAS offrir.",
+    step2_h2: '2. Qui ne peut pas offrir à qui ? <span class="subtle">(optionnel)</span>',
+    excl_hint:
+      "Par défaut, <strong>n'importe qui peut être associé à n'importe qui</strong>. À utiliser seulement si certaines personnes ne <em>doivent pas</em> offrir à une autre — par exemple un couple, ou deux personnes qui échangent déjà des cadeaux.",
+    excl_person_aria: "Personne concernée",
+    excl_sentence_tail: "ne doit PAS offrir à :",
+    excl_summary_title: "Restrictions définies :",
+    excl_summary_line: "{giver} n'offrira pas à {names}",
     add_first: "Ajoute d'abord au moins 2 personnes.",
     step3_h2: "3. Tirage",
     draw_btn: "Tirer au sort",
@@ -104,8 +114,13 @@ const translations = {
     people_count: "{n} Personen hinzugefügt.",
     name_too_long: "Namen dürfen höchstens {max} Zeichen lang sein.",
     remove_title: "{name} entfernen",
-    step2_h2: '2. Ausschlüsse <span class="subtle">(optional)</span>',
-    excl_hint: "Wähle eine Person und markiere alle, denen sie NICHT schenken darf.",
+    step2_h2: '2. Wer darf wem nicht schenken? <span class="subtle">(optional)</span>',
+    excl_hint:
+      "Standardmässig <strong>kann jede Person jeder anderen zugelost werden</strong>. Nur nötig, wenn bestimmte Personen einander <em>nicht</em> beschenken sollen — etwa ein Paar oder zwei, die schon Geschenke tauschen.",
+    excl_person_aria: "Betroffene Person",
+    excl_sentence_tail: "darf NICHT beschenken:",
+    excl_summary_title: "Bisher festgelegte Einschränkungen:",
+    excl_summary_line: "{giver} beschenkt {names} nicht",
     add_first: "Füge zuerst mindestens 2 Personen hinzu.",
     step3_h2: "3. Auslosen",
     draw_btn: "Namen auslosen",
@@ -146,8 +161,13 @@ const translations = {
     people_count: "{n} persunas agiuntadas.",
     name_too_long: "Ils nums dastgan avair maximalmain {max} caracters.",
     remove_title: "Allontanar {name}",
-    step2_h2: '2. Exclusiuns <span class="subtle">(opziunal)</span>',
-    excl_hint: "Tscherna ina persuna e marca tuts a tgi ch'ella NA dastga BETG far in regal.",
+    step2_h2: '2. Tgi na dastga betg far in regal a tgi? <span class="subtle">(opziunal)</span>',
+    excl_hint:
+      "Da standard <strong>po mintga persuna vegnir attribuida a mintga autra</strong>. Douvra quai mo, sche tschertas persunas na <em>duessan betg</em> far in regal ina a l'autra — p.ex. ina pèr, u duas persunas che barattan gia regals.",
+    excl_person_aria: "Persuna pertutgada",
+    excl_sentence_tail: "na dastga BETG far in regal a:",
+    excl_summary_title: "Restricziuns definidas:",
+    excl_summary_line: "{giver} na fa nagin regal a {names}",
     add_first: "Agiunta l'emprim almain 2 persunas.",
     step3_h2: "3. Trair a la sort",
     draw_btn: "Trair ils nums",
@@ -188,8 +208,13 @@ const translations = {
     people_count: "{n} persone aggiunte.",
     name_too_long: "I nomi non possono superare i {max} caratteri.",
     remove_title: "Rimuovi {name}",
-    step2_h2: '2. Esclusioni <span class="subtle">(facoltativo)</span>',
-    excl_hint: "Scegli una persona, poi seleziona tutti quelli a cui NON deve fare un regalo.",
+    step2_h2: '2. Chi non può fare un regalo a chi? <span class="subtle">(facoltativo)</span>',
+    excl_hint:
+      "Per impostazione predefinita, <strong>chiunque può essere abbinato a chiunque</strong>. Usalo solo se alcune persone <em>non dovrebbero</em> fare un regalo a un'altra — ad esempio una coppia, o due persone che si scambiano già i regali.",
+    excl_person_aria: "Persona interessata",
+    excl_sentence_tail: "NON deve fare un regalo a:",
+    excl_summary_title: "Restrizioni impostate:",
+    excl_summary_line: "{giver} non farà un regalo a {names}",
     add_first: "Aggiungi prima almeno 2 persone.",
     step3_h2: "3. Estrazione",
     draw_btn: "Estrai i nomi",
@@ -262,6 +287,9 @@ function applyStaticTranslations() {
   });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     el.placeholder = t(el.dataset.i18nPlaceholder);
+  });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+    el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel));
   });
 }
 

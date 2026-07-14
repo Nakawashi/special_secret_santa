@@ -169,6 +169,7 @@ function renderChecklist() {
     });
     const span = document.createElement("span");
     span.textContent = person;
+    span.title = person; // full name on hover when the label truncates it
     label.append(cb, span);
     li.append(label);
     exclChecklist.appendChild(li);

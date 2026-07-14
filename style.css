@@ -146,7 +146,15 @@ main {
    give a gift to:" so the giver → receiver direction is obvious. */
 .excl-sentence { align-items: baseline; }
 .excl-sentence .excl-icon { color: var(--red); align-self: center; }
-.excl-sentence select { flex: 0 1 auto; min-width: 8rem; }
+.excl-sentence select {
+  flex: 0 1 auto;
+  min-width: 8rem;
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 2rem; /* room for the arrow so the name never runs under it */
+}
 .excl-sentence .excl-tail {
   font-family: "Nunito", var(--sans);
   font-weight: 700;
@@ -195,7 +203,14 @@ main {
   cursor: pointer;
   margin: 0;
 }
-.checklist input[type="checkbox"] { cursor: pointer; margin: 0; }
+.checklist input[type="checkbox"] { cursor: pointer; margin: 0; flex: none; }
+/* Truncate long names with an ellipsis instead of overflowing the label. */
+.checklist label span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .checklist li.checked label {
   border-color: var(--red);
   background: #fbeae7;

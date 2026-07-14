@@ -11,6 +11,8 @@ const exclPerson = $("excl-person");
 const exclChecklist = $("excl-checklist");
 const exclEmpty = $("excl-empty");
 
+const MAX_NAME_LEN = 35; // a participant name may not exceed this length
+
 personForm.addEventListener("submit", (e) => {
   e.preventDefault();
   // Accept a single name or a comma / newline separated list.
@@ -21,7 +23,12 @@ personForm.addEventListener("submit", (e) => {
   if (!names.length) return;
 
   let added = 0;
+  let tooLong = 0;
   for (const name of names) {
+    if (name.length > MAX_NAME_LEN) {
+      tooLong++;
+      continue; // skip names that are too long
+    }
     const exists = state.people.some(
       (p) => p.toLowerCase() === name.toLowerCase()
     );
@@ -30,14 +37,18 @@ personForm.addEventListener("submit", (e) => {
     added++;
   }
 
-  if (added === 0) {
-    personInput.select(); // everything was a duplicate — keep it for editing
-    return;
+  if (added > 0) {
+    personInput.value = "";
+    personInput.focus();
+  } else {
+    personInput.select(); // nothing added — keep the input for editing
   }
-  personInput.value = "";
-  personInput.focus();
+
   renderPeople();
   renderExclusions();
+
+  // renderPeople resets the hint, so show the warning after it.
+  if (tooLong > 0) peopleHint.textContent = t("name_too_long", { max: MAX_NAME_LEN });
 });
 
 function removePerson(name) {

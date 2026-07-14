@@ -49,7 +49,7 @@ const translations = {
   fr: {
     title: "Secret Santa pour familles compliquées",
     h1: "Secret Santa pour familles compliquées",
-    tagline: "Ajoute tout le monde, indique qui ne <em>peut pas</em> offrir à qui, puis tire au sort.",
+    tagline: "Ajoute tout le monde, indique qui ne <em>peut pas</em> offrir à qui, puis tire au sort!!!",
     reveal_h2: "Ton Secret Santa",
     reveal_open: "Révéler ma personne",
     reveal_note: "Garde ce nom secret jusqu'à Noël.",

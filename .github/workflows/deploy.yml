@@ -1,0 +1,42 @@
+name: Deploy to Infomaniak
+
+# Déploie le site sur l'hébergement Infomaniak par FTPS à chaque push sur main.
+# Les identifiants sont lus depuis les "Secrets" du dépôt GitHub, jamais commités.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # permet aussi un déclenchement manuel depuis l'onglet Actions
+
+concurrency:
+  group: deploy-infomaniak
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          # Dossier racine du site sur le serveur (doit finir par /).
+          # À adapter : c'est le dossier où se trouvent aujourd'hui tes fichiers
+          # dans le FTP web (souvent /web/ ou /sites/<domaine>/).
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          # On ne pousse que le site. Le reste (git, config, docs) est exclu.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.claude/**
+            **/node_modules/**
+            **/*.md

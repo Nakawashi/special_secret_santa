@@ -88,9 +88,51 @@ const translations = {
       'rel="noopener">Doodle CSS</a> pour le style dessiné à la main. 💛',
     credits: "Fait pour le fun par Nakawashi et Claude",
   },
+  de: {
+    title: "Secret Santa für schwierige Familien",
+    h1: "Secret Santa für schwierige Familien",
+    tagline: "Füge alle hinzu, lege fest, wer wem <em>nicht</em> schenken darf, und lose dann aus.",
+    reveal_h2: "Dein Secret Santa",
+    reveal_open: "Meine Person anzeigen",
+    reveal_note: "Halte diesen Namen bis Weihnachten geheim.",
+    reveal_greeting: "Hallo {name}! Klicke, um zu sehen, wen du beschenkst.",
+    reveal_name: "Du beschenkst {name}",
+    step1_h2: "1. Teilnehmer",
+    add_placeholder: "Füge einen Namen hinzu, oder eine Liste: Alice, Bob, Carol",
+    add_btn: "Hinzufügen",
+    people_need2: "Du brauchst mindestens 2 Personen.",
+    people_count: "{n} Personen hinzugefügt.",
+    name_too_long: "Namen dürfen höchstens {max} Zeichen lang sein.",
+    remove_title: "{name} entfernen",
+    step2_h2: '2. Ausschlüsse <span class="subtle">(optional)</span>',
+    excl_hint: "Wähle eine Person und markiere alle, denen sie NICHT schenken darf.",
+    add_first: "Füge zuerst mindestens 2 Personen hinzu.",
+    step3_h2: "3. Auslosen",
+    draw_btn: "Namen auslosen",
+    err_need2: "Füge mindestens 2 Personen hinzu, bevor du auslost.",
+    err_no_match:
+      "Mit diesen Regeln ist keine gültige Zuordnung möglich — die Ausschlüsse sind zu streng. Entferne einige.",
+    results_h3: "Ergebnisse",
+    copy_links_btn: "Alle Links kopieren",
+    reveal_all: "Alle anzeigen",
+    hide_all: "Alle verbergen",
+    results_hint:
+      'Schicke jeder Person <strong>ihren Link</strong> (Schaltfläche ' +
+      '<span class="material-icons">link</span> in ihrer Zeile). Beim Öffnen ' +
+      "sieht sie nur, wen sie beschenkt — die Überraschung bleibt erhalten, auch für dich.",
+    tap_reveal: "tippen zum Anzeigen",
+    click_reveal: "Zum Anzeigen klicken",
+    copy_link_title: "Link von {name} kopieren",
+    copied: "Kopiert",
+    footer_privacy: "Alles bleibt in deinem Browser — nichts wird irgendwohin gesendet.",
+    footer_thanks:
+      'Danke an <a href="https://chr15m.github.io/DoodleCSS/" target="_blank" ' +
+      'rel="noopener">Doodle CSS</a> für den handgezeichneten Stil. 💛',
+    credits: "Mit Freude gemacht von Nakawashi und Claude",
+  },
 };
 
-const LANGS = ["en", "fr"];
+const LANGS = ["en", "fr", "de"];
 let lang = "en";
 
 // Translate `key`, substituting {placeholders} from `params`. Falls back to

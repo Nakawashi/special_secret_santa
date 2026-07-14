@@ -130,9 +130,51 @@ const translations = {
       'rel="noopener">Doodle CSS</a> für den handgezeichneten Stil. 💛',
     credits: "Mit Freude gemacht von Nakawashi und Claude",
   },
+  rm: {
+    title: "Secret Santa per famiglias problematicas",
+    h1: "Secret Santa per famiglias problematicas",
+    tagline: "Agiuntai tuts, definì tgi che <em>na dastga betg</em> far in regal a tgi, e traite lura ils nums.",
+    reveal_h2: "Tes Secret Santa",
+    reveal_open: "Mussar mia persuna",
+    reveal_note: "Mantegna quest num secret enfin Nadal.",
+    reveal_greeting: "Bun di {name}! Clicca per vesair a tgi che ti fas in regal.",
+    reveal_name: "Ti fas in regal a {name}",
+    step1_h2: "1. Participants",
+    add_placeholder: "Agiunta in num, u ina glista: Alice, Bob, Carol",
+    add_btn: "Agiuntar",
+    people_need2: "Ti dovras almain 2 persunas.",
+    people_count: "{n} persunas agiuntadas.",
+    name_too_long: "Ils nums dastgan avair maximalmain {max} caracters.",
+    remove_title: "Allontanar {name}",
+    step2_h2: '2. Exclusiuns <span class="subtle">(opziunal)</span>',
+    excl_hint: "Tscherna ina persuna e marca tuts a tgi ch'ella NA dastga BETG far in regal.",
+    add_first: "Agiunta l'emprim almain 2 persunas.",
+    step3_h2: "3. Trair a la sort",
+    draw_btn: "Trair ils nums",
+    err_need2: "Agiunta almain 2 persunas avant che trair.",
+    err_no_match:
+      "Impussibel da chattar ina repartiziun valida cun questas reglas — las exclusiuns èn memia strictas. Emprova d'allontanar intginas.",
+    results_h3: "Resultats",
+    copy_links_btn: "Copiar tut ils links",
+    reveal_all: "Mussar tut",
+    hide_all: "Zuppentar tut",
+    results_hint:
+      'Trametta a mintga persuna <strong>ses link</strong> (buttun ' +
+      '<span class="material-icons">link</span> en sia lingia). Cur ch\'ella al avra, ' +
+      "vesa ella mo a tgi ch'ella fa in regal — la surpraisa resta intacta, era per tai.",
+    tap_reveal: "tutgar per mussar",
+    click_reveal: "Cliccar per mussar",
+    copy_link_title: "Copiar il link da {name}",
+    copied: "Copià",
+    footer_privacy: "Tut resta en tes navigatur — nagut na vegn tramess.",
+    footer_thanks:
+      'Grazia a <a href="https://chr15m.github.io/DoodleCSS/" target="_blank" ' +
+      'rel="noopener">Doodle CSS</a> per il stil dissegnà a maun. 💛',
+    credits: "Fatg cun plaschair da Nakawashi e Claude",
+  },
 };
 
-const LANGS = ["en", "fr", "de"];
+const LANGS = ["en", "fr", "de", "rm"];
 let lang = "en";
 
 // Translate `key`, substituting {placeholders} from `params`. Falls back to

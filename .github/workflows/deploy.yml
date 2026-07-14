@@ -28,9 +28,10 @@ jobs:
           protocol: ftps
           port: 21
           # Dossier racine du site sur le serveur (doit finir par /).
-          # À adapter : c'est le dossier où se trouvent aujourd'hui tes fichiers
-          # dans le FTP web (souvent /web/ ou /sites/<domaine>/).
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          # Sur Infomaniak, l'utilisateur FTP atterrit déjà dans le dossier du
+          # site, donc "./" convient le plus souvent. Si besoin, définis le
+          # secret FTP_SERVER_DIR (ex. "/web/") pour surcharger cette valeur.
+          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
           local-dir: ./
           # On ne pousse que le site. Le reste (git, config, docs) est exclu.
           exclude: |

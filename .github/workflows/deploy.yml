@@ -1,6 +1,8 @@
 name: Deploy to Infomaniak
 
-# Déploie le site sur l'hébergement Infomaniak par FTPS à chaque push sur main.
+# Déploie le site sur l'hébergement Infomaniak par SFTP à chaque push sur main.
+# (Le FTPS n'est pas supporté par ce serveur — erreur "500 This security
+# scheme is not implemented" — donc on passe par SFTP/SSH, port 22.)
 # Les identifiants sont lus depuis les "Secrets" du dépôt GitHub, jamais commités.
 
 on:
@@ -19,25 +21,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          # Dossier racine du site sur le serveur (doit finir par /).
-          # Sur Infomaniak, l'utilisateur FTP atterrit déjà dans le dossier du
-          # site, donc "./" convient le plus souvent. Si besoin, définis le
-          # secret FTP_SERVER_DIR (ex. "/web/") pour surcharger cette valeur.
-          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
-          local-dir: ./
-          # On ne pousse que le site. Le reste (git, config, docs) est exclu.
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/.claude/**
-            **/node_modules/**
-            **/*.md
+      # On ne pousse que le site : on rassemble les fichiers utiles dans _site/.
+      # Ainsi rien d'autre (git, config, docs) ne part sur le serveur.
+      - name: Stage site files
+        run: |
+          mkdir _site
+          cp index.html style.css LICENSE _site/
+          cp -r js _site/
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy via SFTP
+        env:
+          SFTP_SERVER: ${{ secrets.FTP_SERVER }}
+          SFTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          SFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          # Dossier cible sur le serveur. Sur Infomaniak, l'utilisateur SFTP
+          # atterrit déjà dans le dossier du site, donc "." convient souvent.
+          # Surcharge possible via le secret FTP_SERVER_DIR (ex. "/web/").
+          SFTP_REMOTE_PATH: ${{ secrets.FTP_SERVER_DIR || '.' }}
+        run: |
+          lftp -c "
+          set sftp:auto-confirm yes;
+          set net:max-retries 2;
+          set net:timeout 15;
+          open -u '$SFTP_USERNAME','$SFTP_PASSWORD' sftp://$SFTP_SERVER;
+          mirror --reverse --verbose ./_site/ '$SFTP_REMOTE_PATH';
+          "

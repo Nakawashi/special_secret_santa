@@ -6,38 +6,64 @@
   <title>Secret Santa for problematic families</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Short+Stack&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Nunito:wght@400;700&family=Short+Stack&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   <link rel="stylesheet" href="https://chr15m.github.io/DoodleCSS/doodle.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="doodle">
+  <nav id="lang-switch" aria-label="Language">
+    <button type="button" data-lang="en">English</button>
+    <span class="sep" aria-hidden="true">·</span>
+    <button type="button" data-lang="fr">Français</button>
+  </nav>
+
   <header>
-    <h1><span class="material-icons">redeem</span> Secret Santa for problematic families</h1>
-    <p class="tagline">Add everyone, set who <em>can't</em> gift whom, then draw the names.</p>
+    <h1>
+      <span class="material-icons">redeem</span>
+      <span data-i18n="h1">Secret Santa for problematic families</span>
+    </h1>
+    <p class="tagline" data-i18n-html="tagline">Add everyone, set who <em>can't</em> gift whom, then draw the names.</p>
   </header>
 
   <main>
+    <!-- Reveal view: shown only when the page is opened via a personal
+         #r=... link. Hides all the setup steps below. -->
+    <section id="reveal-card" class="card doodle-border" hidden>
+      <h2>
+        <span class="material-icons">redeem</span>
+        <span data-i18n="reveal_h2">Your Secret Santa</span>
+      </h2>
+      <p id="reveal-greeting" class="hint"></p>
+      <button id="reveal-open" class="primary">
+        <span class="material-icons">card_giftcard</span>
+        <span data-i18n="reveal_open">Reveal my person</span>
+      </button>
+      <p id="reveal-name" hidden></p>
+      <p id="reveal-note" class="hint" hidden data-i18n="reveal_note">Keep this name secret until Christmas.</p>
+    </section>
+
     <!-- People -->
-    <section class="card doodle-border">
-      <h2>1. People</h2>
+    <section class="card doodle-border step">
+      <h2 data-i18n="step1_h2">1. People</h2>
       <form id="person-form" class="row">
         <input
           id="person-input"
           type="text"
+          data-i18n-placeholder="add_placeholder"
           placeholder="Add a name, or a list: Alice, Bob, Carol"
           autocomplete="off"
         />
-        <button type="submit">Add</button>
+        <button type="submit" data-i18n="add_btn">Add</button>
       </form>
       <ul id="people-list" class="chips"></ul>
       <p id="people-hint" class="hint">You need at least 2 people.</p>
     </section>
 
     <!-- Exclusions -->
-    <section class="card doodle-border">
-      <h2>2. Exclusions <span class="subtle">(optional)</span></h2>
-      <p class="hint">Pick a person, then check everyone they must NOT gift.</p>
+    <section class="card doodle-border step">
+      <h2 data-i18n-html="step2_h2">2. Exclusions <span class="subtle">(optional)</span></h2>
+      <p class="hint" data-i18n="excl_hint">Pick a person, then check everyone they must NOT gift.</p>
       <div class="row">
         <select id="excl-person"></select>
       </div>
@@ -46,32 +72,54 @@
     </section>
 
     <!-- Draw -->
-    <section class="card doodle-border">
-      <h2>3. Draw</h2>
-      <button id="draw-btn" class="primary"><span class="material-icons">casino</span> Draw names</button>
+    <section class="card doodle-border step">
+      <h2 data-i18n="step3_h2">3. Draw</h2>
+      <button id="draw-btn" class="primary">
+        <span class="material-icons">casino</span>
+        <span data-i18n="draw_btn">Draw names</span>
+      </button>
       <p id="draw-error" class="error" hidden></p>
       <div id="results" class="results" hidden>
         <div class="results-head">
-          <h3>Results</h3>
+          <h3 data-i18n="results_h3">Results</h3>
           <div class="results-actions">
-            <button id="copy-btn" class="ghost"><span class="material-icons">content_copy</span> Copy</button>
-            <button id="reveal-btn" class="ghost">Reveal all</button>
+            <button id="copy-links-btn" class="ghost">
+              <span class="material-icons">link</span>
+              <span data-i18n="copy_links_btn">Copy all links</span>
+            </button>
+            <button id="reveal-btn" class="ghost" data-i18n="reveal_all">Reveal all</button>
           </div>
         </div>
+        <p class="hint" data-i18n-html="results_hint">
+          Send each person <strong>their link</strong> (the
+          <span class="material-icons">link</span> button on their row). When they
+          open it, they'll only see who to gift — the surprise stays intact,
+          even for you.
+        </p>
         <ul id="results-list" class="assignments"></ul>
       </div>
     </section>
   </main>
 
   <footer>
-    <p class="hint">Everything stays in your browser — nothing is sent anywhere.</p>
-    <p class="hint">
+    <p class="hint" data-i18n="footer_privacy">Everything stays in your browser — nothing is sent anywhere.</p>
+    <p class="hint" data-i18n-html="footer_thanks">
       Thank you to
       <a href="https://chr15m.github.io/DoodleCSS/" target="_blank" rel="noopener">Doodle CSS</a>
       for the hand-drawn style. 💛
     </p>
+    <p class="hint credits" data-i18n="credits">Made with fun by Nakawashi and Claude</p>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- Loaded in dependency order; main.js runs the app once the rest is defined. -->
+  <script src="js/utils.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/matching.js"></script>
+  <script src="js/links.js"></script>
+  <script src="js/people.js"></script>
+  <script src="js/results.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

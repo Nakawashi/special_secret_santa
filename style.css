@@ -24,6 +24,9 @@
 
 * { box-sizing: border-box; }
 
+/* Body copy uses Nunito instead of the doodle font. */
+p { font-family: "Nunito", var(--sans); }
+
 /* Material Icons: align with adjacent text, inherit sizing sensibly. */
 .material-icons {
   font-size: 1.2em;
@@ -35,6 +38,35 @@ h1 .material-icons { font-size: 0.9em; vertical-align: -0.1em; color: var(--red)
 .assignments .material-icons { color: var(--green); }
 
 body { line-height: 1.5; }
+
+/* Language switcher (upper-right, text only) */
+#lang-switch {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.9rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+}
+#lang-switch button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  min-height: 0;
+  font: inherit;
+}
+#lang-switch button:hover { color: var(--ink); }
+#lang-switch button.active {
+  color: var(--red);
+  font-weight: 700;
+  text-decoration: underline;
+}
+#lang-switch .sep { color: var(--muted); }
 
 header {
   text-align: center;
@@ -141,6 +173,7 @@ main {
 
 /* Results */
 .results { margin-top: 1.25rem; }
+[data-i18n-html="results_hint"] { margin: 20px 0; }
 .results-head {
   display: flex;
   justify-content: space-between;
@@ -169,7 +202,13 @@ main {
   align-items: center;
   gap: 0.75rem;
 }
-.assignments .giver { font-weight: 700; }
+.assignments .giver { font-weight: 700; margin-right: auto; }
+.assignments .copy-link {
+  min-height: 0;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+}
+.assignments .copy-link .material-icons { margin-right: 0; }
 .assignments .receiver {
   color: var(--green);
   font-weight: 700;
@@ -181,5 +220,18 @@ main {
   font-weight: 400;
   font-style: italic;
 }
+
+/* Reveal view (opened via a personal #r= link) */
+#reveal-card { text-align: center; }
+#reveal-greeting { font-size: 1.05rem; margin-bottom: 1rem; }
+#reveal-open { font-size: 1.15rem; }
+#reveal-name {
+  font-family: var(--sans);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--green);
+  margin: 1rem 0 0;
+}
+#reveal-name .material-icons { font-size: 1.1em; vertical-align: -0.15em; }
 
 footer { text-align: center; padding: 1.5rem; color: var(--muted); }
